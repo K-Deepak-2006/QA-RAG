@@ -1,0 +1,11 @@
+Drip Irrigation Basics (sample document)
+
+Drip irrigation delivers water slowly and directly to the root zone of each plant through emitters on a network of tubes. Because water is applied only where it is needed, losses from evaporation, runoff, and deep percolation are small. Drip systems are often cited as reaching about 90 percent application efficiency, compared with roughly 50 to 60 percent for flood irrigation.
+
+Typical emitters release between 1 and 4 liters per hour. Pressure-compensating emitters keep the flow nearly constant along long tubing runs and on sloping ground, while simple non-compensating emitters are cheaper but their flow changes with pressure. Most systems run at low pressure, around 1 bar at the emitter.
+
+Clogging is the most common failure. Emitter openings are tiny, so water must be filtered before entering the lines. A screen filter of about 120 mesh removes sand and debris, while disc or sand filters are used for water with algae or heavy sediment. Lines should be flushed at the end of each season, and acid or chlorine treatment can dissolve mineral scale.
+
+Fertigation means injecting dissolved fertilizer into the irrigation water so nutrients reach the roots in small, frequent doses. It improves nutrient use efficiency and reduces fertilizer waste, but it needs good filtration and a backflow preventer to protect the water source.
+
+Scheduling can be fixed by timer, or sensor-driven: soil moisture readings trigger a valve only when the soil has dried to a set threshold, which saves water compared with a fixed daily schedule.

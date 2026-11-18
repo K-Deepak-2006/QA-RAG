@@ -1,0 +1,11 @@
+Atmospheric Water Harvesting (sample document)
+
+Atmospheric water harvesting (AWH) collects water that is already present in the air as vapor or fog. There are three main approaches: fog nets, dew condensation, and sorption-based harvesting.
+
+Fog nets are fine mesh panels placed in foggy coastal or mountain regions. Tiny fog droplets hit the mesh, merge into larger drops, and run down into a gutter. They need no electricity, but they only work where fog is frequent, and yield varies widely from site to site.
+
+Dew condensation cools a surface below the dew point, the temperature at which air becomes saturated and vapor turns into liquid. Active refrigeration-based condensers do this with a compressor. They work well when relative humidity is high, but their energy use per liter rises sharply as the air gets drier. Passive radiative cooling surfaces can also reach the dew point at night without power.
+
+Sorption-based harvesting uses hygroscopic materials that pull vapor out of the air even when relative humidity is low. Common sorbents include silica gel, hygroscopic salts, and metal-organic frameworks (MOFs). The material adsorbs vapor during the cool, humid night, then is heated by sunlight or a small heater during the day. The heat releases the vapor, which is condensed and collected as liquid water. This cycle makes sorption the leading option for arid regions.
+
+Sensors such as temperature and humidity probes are used to decide when to switch between the adsorption and desorption phases, which is why AWH systems are often combined with IoT controllers and machine learning models that predict the best harvesting window.

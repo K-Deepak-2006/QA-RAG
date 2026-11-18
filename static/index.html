@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WaterRAG</title>
+<style>
+  :root {
+    --paper: #f2f6f5; --ink: #11303b; --water: #17788f; --silt: #9a6b21; --line: #c8d6d3; --panel: #ffffff;
+    --serif: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #0d1e25; --ink: #dbe9e8; --water: #5cc0d6; --silt: #d9a65a; --line: #29414a; --panel: #132a33; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 var(--sans); }
+  main { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+  h1 { font: 600 2.4rem/1.1 var(--serif); margin: 0 0 .4rem; letter-spacing: -.01em; }
+  .lede { margin: 0 0 2rem; max-width: 36rem; }
+  form { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2rem; }
+  input[type=text] { flex: 1 1 18rem; padding: .75rem .9rem; font: inherit; color: inherit; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 6px; }
+  select, button { padding: .75rem 1rem; font: inherit; border-radius: 6px; border: 1px solid var(--line);
+    background: var(--panel); color: inherit; }
+  button { background: var(--water); border-color: var(--water); color: #fff; font-weight: 600; cursor: pointer; }
+  @media (prefers-color-scheme: dark) { button { color: #08171c; } }
+  button:disabled { opacity: .6; cursor: progress; }
+  :focus-visible { outline: 3px solid var(--silt); outline-offset: 2px; }
+  #answer { font: 1.15rem/1.7 var(--serif); white-space: pre-wrap; margin: 0 0 2rem; }
+  #answer sup a { color: var(--silt); font: 600 .75rem var(--sans); text-decoration: none; padding: 0 .1rem; }
+  h2 { font: 600 1.1rem var(--serif); margin: 0 0 .75rem; }
+  ol { list-style: none; margin: 0; padding: 0; }
+  li { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--silt);
+    border-radius: 6px; padding: .8rem 1rem; margin-bottom: .75rem; }
+  li:target { border-left-color: var(--water); }
+  .src { font-weight: 600; font-size: .9rem; }
+  .txt { margin: .3rem 0 0; font-size: .92rem; }
+  .msg { color: var(--silt); }
+</style>
+</head>
+<body>
+<main>
+  <h1>WaterRAG</h1>
+  <p class="lede">Ask a question about water harvesting, irrigation, or soil sensing. Every answer cites the passages it came from.</p>
+  <form id="form">
+    <input id="q" type="text" placeholder="How do sorption harvesters work in dry air?" aria-label="Question" required minlength="3">
+    <select id="mode" aria-label="Retrieval mode">
+      <option value="hybrid_rerank">Hybrid + rerank</option>
+      <option value="hybrid">Hybrid</option>
+      <option value="dense">Dense only</option>
+      <option value="bm25">Keyword only</option>
+    </select>
+    <button id="go" type="submit">Ask</button>
+  </form>
+  <div id="answer" aria-live="polite"></div>
+  <div id="sources" hidden><h2>Sources</h2><ol id="list"></ol></div>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+
+function renderAnswer(text) {
+  const box = $("answer");
+  box.replaceChildren();
+  for (const part of text.split(/(\[\d+\])/)) {
+    const m = part.match(/^\[(\d+)\]$/);
+    if (m) {
+      const sup = document.createElement("sup");
+      const a = document.createElement("a");
+      a.href = "#src" + m[1]; a.textContent = "[" + m[1] + "]";
+      sup.append(a); box.append(sup);
+    } else box.append(part);
+  }
+}
+
+function renderSources(sources) {
+  const list = $("list");
+  list.replaceChildren();
+  for (const s of sources) {
+    const li = document.createElement("li");
+    li.id = "src" + s.n;
+    const h = document.createElement("div");
+    h.className = "src"; h.textContent = `[${s.n}] ${s.source}, page ${s.page}`;
+    const p = document.createElement("p");
+    p.className = "txt"; p.textContent = s.text;
+    li.append(h, p); list.append(li);
+  }
+  $("sources").hidden = sources.length === 0;
+}
+
+$("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const go = $("go"); go.disabled = true; go.textContent = "Searching";
+  $("answer").className = "";
+  try {
+    const res = await fetch("/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: $("q").value, mode: $("mode").value }),
+    });
+    if (!res.ok) throw new Error("The server returned " + res.status + ". Check the question and try again.");
+    const data = await res.json();
+    renderAnswer(data.answer); renderSources(data.sources);
+  } catch (err) {
+    $("answer").className = "msg";
+    $("answer").textContent = err.message || "Could not reach the server. Make sure it is running.";
+    $("sources").hidden = true;
+  } finally { go.disabled = false; go.textContent = "Ask"; }
+});
+</script>
+</body>
+</html>

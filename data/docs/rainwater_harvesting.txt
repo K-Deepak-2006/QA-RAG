@@ -1,0 +1,11 @@
+Rainwater Harvesting (sample document)
+
+Rainwater harvesting collects and stores rain for later use. A typical rooftop system has a catchment surface (the roof), gutters, a first-flush diverter, a filter, and a storage tank. The first-flush diverter discards the first part of each rain event, which washes dust, bird droppings, and debris off the roof, so cleaner water reaches the tank.
+
+The potential harvest can be estimated with a simple formula: volume in liters equals rainfall in millimeters times catchment area in square meters times the runoff coefficient. One millimeter of rain falling on one square meter produces one liter of water before losses. The runoff coefficient accounts for losses from splash, evaporation, and leaks. For a smooth metal or tiled roof it is commonly taken as 0.8 to 0.9, while for a concrete terrace it is lower.
+
+For example, a 100 square meter roof in a place with 800 mm of annual rain with a runoff coefficient of 0.8 can yield about 64,000 liters a year.
+
+Where water cannot be stored on the surface, harvested water can recharge groundwater instead. Recharge pits, trenches, and percolation tanks let runoff soak into the soil and refill aquifers. This is widely promoted in India, where groundwater levels have fallen in many regions.
+
+Stored rainwater is generally suitable for irrigation and cleaning. For drinking it needs filtration and disinfection, and tanks should be covered to keep out light and mosquitoes.

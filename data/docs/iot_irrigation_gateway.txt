@@ -1,0 +1,11 @@
+IoT Irrigation Gateway Design (sample document)
+
+This sample design uses ESP32 field nodes and a Raspberry Pi gateway. Each ESP32 node reads soil moisture and tank level sensors, then sends readings to the gateway over Wi-Fi using MQTT. The gateway applies irrigation rules and can switch a solenoid valve through a relay.
+
+Tank level is measured with an ultrasonic sensor mounted above the water. The sensor emits a sound pulse and measures the echo return time. The distance to the water surface equals the speed of sound times the time of flight divided by two. Subtracting that distance from the tank height gives the water level, and the result can be converted to liters from the tank geometry.
+
+Field nodes are battery or solar powered, so they use deep sleep between readings. The ESP32 wakes on a timer, takes a measurement, transmits, and sleeps again, which reduces average current from tens of milliamps to microamps for most of the cycle.
+
+Connectivity is unreliable in rural areas. The gateway therefore uses store-and-forward: readings and commands are written to a local queue on disk first. When the cloud connection is lost, the gateway keeps running its local irrigation rules. When the connection returns, the queued messages are replayed in order, and duplicate messages are detected by an ID so nothing is counted twice.
+
+A hardware watchdog timer restarts the node if the firmware hangs, and every valve command has a maximum run time so a lost "stop" message can never leave water running.

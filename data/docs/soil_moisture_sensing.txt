@@ -1,0 +1,11 @@
+Soil Moisture Sensing (sample document)
+
+Soil moisture is usually expressed as volumetric water content (VWC), the fraction of soil volume that is water. Two terms matter for irrigation decisions. Field capacity is the moisture level a soil holds after excess water has drained away under gravity. The permanent wilting point is the level below which plants can no longer extract water and wilt without recovering. The water between these two levels is the plant-available water.
+
+Resistive sensors measure the electrical resistance between two probes. They are cheap, but the metal probes corrode quickly in wet soil, and readings drift as the probes degrade. Capacitive sensors measure the dielectric permittivity of the surrounding soil, which changes strongly with water content. Their electrodes are coated and do not corrode, so capacitive sensors last longer and are the usual choice for field deployments.
+
+Raw sensor output is not a direct VWC reading. Each sensor type and each soil type needs calibration: take readings in air and in fully saturated soil, and ideally compare against oven-dried soil samples to build a calibration curve. Clay, sand, and loam respond differently.
+
+Sensors should be placed in the root zone, typically at one or two depths such as 15 cm and 30 cm for shallow-rooted vegetables, and away from emitters so that readings represent the average soil rather than a wet spot. Several sensors per field reduce the effect of local variation.
+
+An irrigation controller can start watering when VWC drops to a chosen fraction of the plant-available water and stop when it returns near field capacity.

@@ -1,0 +1,14 @@
+{"question": "How do sorption-based harvesters work when the air is dry?", "source": "atmospheric_water_harvesting.txt", "keyword": "hygroscopic"}
+{"question": "What is the dew point and why does it matter for condensation?", "source": "atmospheric_water_harvesting.txt", "keyword": "dew point"}
+{"question": "Which materials can adsorb vapor from air at night?", "source": "atmospheric_water_harvesting.txt", "keyword": "metal-organic"}
+{"question": "How do I stop emitters from clogging?", "source": "drip_irrigation.txt", "keyword": "120 mesh"}
+{"question": "What is fertigation?", "source": "drip_irrigation.txt", "keyword": "fertigation"}
+{"question": "Why are capacitive soil sensors preferred over resistive ones?", "source": "soil_moisture_sensing.txt", "keyword": "corrode"}
+{"question": "What does permanent wilting point mean?", "source": "soil_moisture_sensing.txt", "keyword": "wilting point"}
+{"question": "At what depth should soil moisture probes be installed?", "source": "soil_moisture_sensing.txt", "keyword": "root zone"}
+{"question": "What does a first-flush diverter do?", "source": "rainwater_harvesting.txt", "keyword": "first-flush"}
+{"question": "How much water does a roof collect from 1 mm of rain?", "source": "rainwater_harvesting.txt", "keyword": "one liter"}
+{"question": "What runoff coefficient is used for a tiled roof?", "source": "rainwater_harvesting.txt", "keyword": "runoff coefficient"}
+{"question": "How does the gateway cope with a lost internet connection?", "source": "iot_irrigation_gateway.txt", "keyword": "store-and-forward"}
+{"question": "How is the water level in the tank computed from an ultrasonic echo?", "source": "iot_irrigation_gateway.txt", "keyword": "time of flight"}
+{"question": "Why does the ESP32 node sleep between readings?", "source": "iot_irrigation_gateway.txt", "keyword": "deep sleep"}
